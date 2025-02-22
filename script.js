@@ -22,9 +22,9 @@ function authenticateAndActivateScript() {
         
         // Esperamos un poco para que la autenticación se complete antes de proceder con el script
         setTimeout(() => {
-            console.log('Esperando 3 segundos antes de proceder con la activación...');
+            console.log('Esperando 5 segundos antes de proceder con la activación...');
             activateScript();
-        }, 3000);  // Esperamos 3 segundos antes de intentar activar el script
+        }, 5000);  // Esperamos 5 segundos antes de intentar activar el script
     } else {
         console.log('No estamos en la página de login, procediendo a activar el script...');
         // Si no estamos en la página de login, directamente intentar activar el script
@@ -39,7 +39,9 @@ function activateScript() {
     
     // Esperamos un momento antes de intentar encontrar el botón
     setTimeout(() => {
+        // Usamos un selector más específico, buscando el contenedor del botón
         const button = document.querySelector('button.MuiButtonBase-root svg.MuiSvgIcon-root');
+        
         if (button) {
             console.log('Botón encontrado, haciendo clic en el botón...');
             button.closest('button').click();  // Hace clic en el botón contenedor
@@ -51,7 +53,7 @@ function activateScript() {
             document.getElementById('statusMessage').innerText = 'No se pudo encontrar el botón en la página.';
             document.getElementById('logMessage').innerText = 'No se pudo encontrar el botón, no se realizó el clic.';
         }
-    }, 2000);  // Espera 2 segundos antes de intentar hacer clic en el botón
+    }, 5000);  // Aumentamos la espera a 5 segundos
 }
 
 function deactivateScript() {
