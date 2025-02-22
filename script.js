@@ -11,15 +11,18 @@ function activateScript() {
             button.closest('button').click();  // Hace clic en el botón contenedor
             console.log('El script ha hecho clic en el botón en la página: ' + url);  // Log en la consola
             document.getElementById('statusMessage').innerText = 'El script está trabajando: el botón fue presionado en ' + url;
+            document.getElementById('logMessage').innerText = 'El clic se realizó correctamente en el botón.';
         } else {
             console.log('No se pudo encontrar el botón en la página.');  // Log en la consola si no se encuentra el botón
             document.getElementById('statusMessage').innerText = 'No se pudo encontrar el botón en la página.';
+            document.getElementById('logMessage').innerText = 'No se pudo encontrar el botón, no se realizó el clic.';
         }
     }, 2000);  // Espera 2 segundos antes de intentar hacer clic en el botón
 }
 
 function deactivateScript() {
     document.getElementById('statusMessage').innerText = 'El script está desactivado.';
+    document.getElementById('logMessage').innerText = 'El script ha sido desactivado.';
 }
 
 document.querySelector("#activarBoton").addEventListener("click", activateScript);
