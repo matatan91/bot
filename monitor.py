@@ -1,11 +1,9 @@
 from playwright.sync_api import sync_playwright
-import os
 import time
 
-# Variables de entorno
-URL = os.getenv("PAGE_URL", "https://conexen.services/provider/services/top-up-provider/available")
-USERNAME = os.getenv("USERNAME", "jorgeleandrom050@gmail.com")
-PASSWORD = os.getenv("PASSWORD", "leandroabdiel**@")
+URL = "https://conexen.services/provider/services/top-up-provider/available"
+USERNAME = "jorgeleandrom050@gmail.com"
+PASSWORD = "leandroabdiel**@"
 
 def monitor_recargas():
     with sync_playwright() as p:
@@ -22,13 +20,13 @@ def monitor_recargas():
         
         time.sleep(3)  # Espera a que cargue la página después del login
         
-        recargas_vistas = set()  # Para evitar duplicados
+        recargas_vistas = set()
 
-        while True:
-            page.reload()  # Refresca la página
-            time.sleep(3)  # Espera que cargue
+        # Monitoreo por 10 minutos
+        for _ in range(10):
+            page.reload()
+            time.sleep(3)
 
-            # Captura las recargas (ajusta el selector según la web)
             recargas = page.query_selector_all('.recarga-item')
             for recarga in recargas:
                 texto = recarga.inner_text()
@@ -36,7 +34,7 @@ def monitor_recargas():
                     print("Nueva recarga detectada:", texto)
                     recargas_vistas.add(texto)
             
-            time.sleep(10)  # Espera antes del próximo chequeo
+            time.sleep(60)  # Espera 1 minuto antes de recargar
 
         browser.close()
 
