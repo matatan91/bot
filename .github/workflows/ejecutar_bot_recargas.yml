@@ -1,3 +1,13 @@
+import os
+
+username = os.getenv('USERNAME')
+password = os.getenv('PASSWORD')
+
+if not username or not password:
+    raise ValueError("Las credenciales no están definidas en las variables de entorno.")
+
+# Resto de tu código...
+
 name: Ejecutar Bot de Recargas
 
 on:
